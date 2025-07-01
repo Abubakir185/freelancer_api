@@ -32,4 +32,5 @@ def delete_user(db: Session, user_id: int):
 
 
 def get_users_by_skill(db: Session, skill: str):
-    return db.query(models.Freelancer).filter(models.Freelancer.skills.contains([skill])).all()
+    users = db.query(models.Freelancer).all()
+    return [user for user in users if skill in user.skills]

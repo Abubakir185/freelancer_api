@@ -18,7 +18,7 @@ class FreelancerBase(BaseModel):
 
     @validator("age")
     def age_must_be_positive(cls, v):
-        if v <= 0:
+        if v <= 1:
             raise ValueError("yosh '0 yoki 0 dan kichik bolishi mumkin emas")
         return v
     
@@ -30,11 +30,11 @@ class FreelancerBase(BaseModel):
         return v
     
     @validator("status")
-    def check_stasus(cls, v):
-        if v != "on_leave" or v != "available" or v != "busy":
-            raise ValueError("Status 'on_leave' yoki 'available' yoki 'busy' bolishi kerak")
+    def check_status(cls, v):
+        if v not in ["on_leave", "available", "busy"]:
+            raise ValueError("Status 'on_leave' yoki 'available' yoki 'busy' bo'lishi kerak")
         return v
-    
+        
     @validator("skills")
     def check_skills_not_empty(cls, v):
         if not v:

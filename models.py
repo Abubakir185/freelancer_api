@@ -18,6 +18,6 @@ class Freelancer(Base):
     phone_number = Column(String)
     age = Column(Integer)
     skills =  Column(JSON, nullable=False) 
-    status = Column(SqlEnum(Status), nullable=False)
+    status = Column(SqlEnum(Status), default="aviable")
 
     joined_at = Column(DateTime, default=func.now())
