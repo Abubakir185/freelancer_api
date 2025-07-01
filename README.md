@@ -18,3 +18,5 @@ database.py 💾 DB bilan bog‘lanish
 Kerakli kutubxonalr:
 pip install -r requirements.txt
 
+Projectni ishga tushurish:
+uvicorn main:app --reload
