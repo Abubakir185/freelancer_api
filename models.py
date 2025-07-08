@@ -14,10 +14,13 @@ class Freelancer(Base):
     __tablename__ = 'freelancers'
 
     id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
     full_name = Column(String)
     phone_number = Column(String)
     age = Column(Integer)
+    hashed_password = Column(String, nullable=False)
     skills =  Column(JSON, nullable=False) 
-    status = Column(SqlEnum(Status), default="aviable")
+    status = Column(SqlEnum(Status), default="available")
 
     joined_at = Column(DateTime, default=func.now())
+

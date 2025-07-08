@@ -23,6 +23,15 @@ def update_user(db: Session, user_id: int, user_data: schema.FreelancerUpdate):
         db.refresh(db_user)
     return db_user
 
+def update_status(db: Session, user_id: int, status: str):
+    db_user = get_user(db, user_id)
+    if not db_user:
+        return None
+    db_user.status = status
+    db.commit
+    db.refresh(db_user)
+    return db_user
+        
 def delete_user(db: Session, user_id: int):
     db_user = get_user(db, user_id)
     if db_user:

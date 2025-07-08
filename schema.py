@@ -1,5 +1,5 @@
 from pydantic import BaseModel, validator
-from typing import List
+from typing import List, Optional
 
 class FreelancerBase(BaseModel):
     full_name: str
@@ -43,13 +43,27 @@ class FreelancerBase(BaseModel):
 
 
 class FreelancerCreate(FreelancerBase):
-    pass
+    username: str
+    password: str
 
 class FreelancerUpdate(FreelancerBase):
     pass
 
 class Freelancer(FreelancerBase):
     id: int
+    username: str
 
     class Config:
         orm_mode = True
+
+class FreelancerLogin(BaseModel):
+    username: str
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: Optional[str] = None
