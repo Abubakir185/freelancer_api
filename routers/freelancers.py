@@ -66,9 +66,9 @@ def update_user(user_id: int, user: schema.FreelancerUpdate, db: Session = Depen
         raise HTTPException(status_code=404, detail="Yangilash uchun user topilmadi")
     return db_user
 
-@router.patch("/users/{user_id}/status", response_model=schema.Freelancer)
+@router.patch("/users/{user_id}/status", response_model=schema.FreelancerUpdate)
 def change_user_status(user_id: int, status_data: schema.FreelancerUpdate, db: Session = Depends(get_db)):
-    updated_user = crud.update_user_status(db, user_id, status_data.status)
+    updated_user = crud.update_status(db, user_id, status_data.status)
     if not updated_user:
         raise HTTPException(status_code=404, detail="User not found")
     return updated_user

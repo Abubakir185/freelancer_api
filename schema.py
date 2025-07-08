@@ -47,7 +47,11 @@ class FreelancerCreate(FreelancerBase):
     password: str
 
 class FreelancerUpdate(FreelancerBase):
-    pass
+    full_name: Optional[str] = None
+    phone_number: Optional[str] = None
+    age: Optional[int] = None
+    skills: Optional[List[str]] = None
+    status: str
 
 class Freelancer(FreelancerBase):
     id: int
